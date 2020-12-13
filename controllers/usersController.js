@@ -17,10 +17,10 @@ const createUser = async (req, res, next) => {
     const {
       name, email,
     } = req.body;
-    const user = await User.create({
+    await User.create({
       name, email, password: hashedPassword,
     });
-    res.status(200).send(user);
+    res.status(200).send({ message: 'Поздравляем! Вы успешно зарегистрировались!' });
   } catch (err) {
     if (err.name === 'MongoError' && err.code === 11000) {
       next(new ConflictError('Пользователь с таким email уже есть'));
