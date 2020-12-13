@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# optional npm cache directory
+.npm
+
+# misc
+.DS_Store
+.idea
+
+# env
+.env
