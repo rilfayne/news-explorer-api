@@ -2,7 +2,6 @@ const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const ForbiddenError = require('../errors/forbidden-err');
 
-
 const getArticles = async (req, res, next) => {
   try {
     const articles = await Article.find({ owner: req.user._id });
@@ -13,9 +12,13 @@ const getArticles = async (req, res, next) => {
 };
 
 const createArticle = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image } = req.body;
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
   const owner = req.user;
-  Article.create({ keyword, title, text, date, source, link, image, owner })
+  Article.create({
+    keyword, title, text, date, source, link, image, owner,
+  })
     .then((article) => {
       res.status(200).send(article);
     })

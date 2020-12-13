@@ -49,7 +49,7 @@ const articleSchema = new Schema({
     ref: 'user',
     required: true,
     select: false,
-  }
+  },
 });
 
 // создаём модель и экспортируем её

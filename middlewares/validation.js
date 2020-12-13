@@ -17,7 +17,6 @@ const validateNewUser = celebrate({
   }),
 });
 
-
 const validateId = celebrate({
   params: Joi.object().keys({
     id: Joi.string().required().custom((value, helpers) => {
@@ -39,7 +38,7 @@ const validateArticle = celebrate({
     link: Joi.string().required().custom((value) => {
       if (!isURL(value)) throw new CelebrateError('Некорректный URL');
       return value;
-      }),
+    }),
     image: Joi.string().required().custom((value) => {
       if (!isURL(value)) throw new CelebrateError('Некорректная ссылка на изображение');
       return value;
