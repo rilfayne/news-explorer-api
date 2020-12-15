@@ -20,12 +20,14 @@ const createUser = async (req, res, next) => {
     await User.create({
       name, email, password: hashedPassword,
     });
-    res.status(200).send({ message: 'Поздравляем! Вы успешно зарегистрировались!' });
+    return res.status(200).send({ message: 'Поздравляем! Вы успешно зарегистрировались!' });
   } catch (err) {
+    let error;
     if (err.name === 'MongoError' && err.code === 11000) {
-      next(new ConflictError('Пользователь с таким email уже есть'));
+      error = new ConflictError('Пользователь с таким email уже есть');
+      return next(error);
     }
-    next(err);
+    return next(err);
   }
 };
 

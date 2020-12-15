@@ -15,7 +15,8 @@ const app = express();
 app.use(cors());
 
 // подключаемся к серверу mongo
-mongoose.connect('mongodb://localhost:27017/news-explorerdb', {
+const mongoUrl = process.env.NODE_ENV === 'production' ? process.env.MONGO_URL : 'mongodb://localhost:27017/news-explorerdb';
+mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
